@@ -2,25 +2,18 @@ import React from 'react';
 import Tweet from './Tweet';
 
 class TweetWall extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      tweets: []
-    };
-  }
 
-  // TODO: componentWillMount()
-  componentWillMount(){
+  // constructor not needed due to the powerdrain this function is
+  componentWillMount(){ // should be done in constructor but the tests must have their due
     this.setState({
       tweets: this.props.newTweets
     })
   }
-  // TODO: shouldComponentUpdate()
+  // only render if the newTwets is greater then 0
   shouldComponentUpdate(nextProps, nextState){
     return (!!nextProps.newTweets.length)
   }
-  // TODO: componentWillReceiveProps()
+  // add the new tweets to the front of the existing tweets
   componentWillReceiveProps(nextProps){
     this.setState({
       tweets: [...nextProps.newTweets, ...this.state.tweets]
